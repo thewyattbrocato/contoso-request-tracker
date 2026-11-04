@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "appId": null,
+  "appDisplayName": "Contoso Request Tracker",
+  "region": "prod",
+  "appType": "CodeApp",
+  "environmentId": "00000000-0000-0000-0000-000000000000",
+  "description": " ",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {
+    "<connection-reference-id>": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+      "displayName": "SharePoint",
+      "dataSources": [
+        "requests",
+        "decisionlog"
+      ],
+      "dataSets": {
+        "https://<your-tenant>.sharepoint.com/sites/<your-site>": {
+          "dataSources": {
+            "requests": {
+              "tableName": "Requests"
+            },
+            "decisionlog": {
+              "tableName": "DecisionLog"
+            }
+          }
+        }
+      }
+    }
+  },
+  "databaseReferences": {}
+}

@@ -1,0 +1,30 @@
+name: Release
+
+# On a version tag (for example v0.1.0), build the app and attach a zip of dist/ to a GitHub release.
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx tsc -b
+      - run: npm run lint
+      - run: npm run build
+      - name: Zip the build
+        run: cd dist && zip -r "../contoso-request-tracker-${GITHUB_REF_NAME}-dist.zip" .
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" "contoso-request-tracker-${GITHUB_REF_NAME}-dist.zip" --title "$GITHUB_REF_NAME" --generate-notes
