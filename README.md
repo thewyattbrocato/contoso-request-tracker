@@ -1,6 +1,6 @@
 # Contoso Request Tracker
 
-> A practice build I made in November 2026 in a Microsoft environment, with fictional Contoso data. It is not production, it was not shared, and it is not based on any Microsoft internal system.
+> A practice build I made in November 2026 in a Power Platform developer environment inside my own work Microsoft 365 account (my employer's tenant, not Microsoft's), with fictional Contoso data. It is not production, it was not shared, it is not based on any Microsoft internal system, and it has no connection to or access to any Microsoft internal system.
 
 ## Start here
 
@@ -25,7 +25,7 @@
 - Server-side filtering and sorting, so the lists stay fast as they grow.
 - Automated checks (type check, lint, build) running in GitHub Actions on every push.
 - A written test-to-production path, labelled planned, not executed.
-- Agent-assisted development, with the checks every change must pass.
+- Development assisted by a coding agent (Claude Code), with the checks every change must pass.
 
 **What this is not**
 
@@ -316,10 +316,19 @@ Not done or not verified:
 
 ## AI in this build
 
-- **What the coding agent did.** A coding agent drafted most of the React and TypeScript views, the CI configuration and the first version of this README from a written specification that I supplied (screens, validation, sort order, the decision rule and the sample-address rule).
-- **What it did not do.** It did not write the data-access layer: `src/generated` is produced by the Power Apps CLI. It did not decide the behaviour, and the build has no AI feature.
+- **Which agent.** The coding agent is Claude Code, Anthropic's coding agent. I have not recorded which model version it ran, so none is named here.
+- **What it did.** Claude Code wrote the React and TypeScript code, the CI configuration and this README under my direction, from a written specification that I supplied (screens, validation, sort order, the decision rule and the sample-address rule).
+- **What it did not do.** It did not write the data-access layer:  is produced by the Power Apps CLI. It did not decide the behaviour, and the build has no AI feature.
 - **What I check by hand.** I read each change before it is merged, run the app through the Power Apps host against sample data, and look for personal or environment-specific values before every commit.
-- **Checks every change must pass.** `npx tsc -b` (type check), `npm run lint`, `npm run build`, and a scan for environment, tenant and personal identifiers. The first three run in GitHub Actions on every push and pull request.
+- **Checks every change must pass.** 
+[41m                                                                               [0m
+[41m[37m                This is not the tsc command you are looking for                [0m
+[41m                                                                               [0m
+
+To get access to the TypeScript compiler, [34mtsc[0m, from the command line either:
+
+- Use [1mnpm install typescript[0m to first add TypeScript to your project [1mbefore[0m using npx
+- Use [1myarn[0m to avoid accidentally running code from un-installed packages (type check), , , and a scan for environment, tenant and personal identifiers. The first three run in the CI workflow in GitHub Actions on every push and pull request. From the change that added this paragraph onward, changes also go through the no-mistakes review pipeline (a local gate that runs review, tests, lint and CI before a pull request is ready); earlier commits in this repository did not.
 
 ## What I would change with more context
 
