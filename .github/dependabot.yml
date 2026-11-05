@@ -3,9 +3,17 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
     open-pull-requests-limit: 5
+    # One pull request for all development dependencies. Major versions are ignored unless asked for.
+    groups:
+      dev-dependencies:
+        dependency-type: development
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly

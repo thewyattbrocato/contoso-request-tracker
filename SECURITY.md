@@ -13,7 +13,7 @@ This is a demo repository with fictional data. Please keep it that way.
 ## Safeguards
 
 - Secret scanning and push protection should be on for this repository (Settings, Code security).
-- Dependabot opens weekly pull requests for npm and GitHub Actions updates.
+- Dependabot opens monthly pull requests for npm and GitHub Actions updates.
 - Every pull request carries a checklist that includes a look for identifiers.
 
 ## Reporting a problem
