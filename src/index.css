@@ -103,3 +103,16 @@ tbody th { font-weight: 600; }
 .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
 .row-actions { white-space: nowrap; }
 .row-actions button + button { margin-left: 0.4rem; }
+
+/* Narrow windows: stack each row as a block so Open and Decide stay on screen without sideways scrolling. */
+@media (max-width: 1000px) {
+  table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  table.stack, table.stack tbody, table.stack tr, table.stack th, table.stack td { display: block; width: 100%; }
+  table.stack tr { border-bottom: 1px solid var(--line); padding: 0.5rem 0; }
+  table.stack th, table.stack td { border: none; padding: 0.15rem 0.6rem; }
+  table.stack tbody th { font-size: 1rem; }
+  table.stack td[data-label]::before { content: attr(data-label) ': '; font-weight: 600; color: var(--muted); }
+  table.stack td.num { text-align: left; }
+  table.stack td.row-actions { padding-top: 0.5rem; white-space: normal; }
+  .table-wrap { overflow-x: visible; }
+}

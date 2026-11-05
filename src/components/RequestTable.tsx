@@ -18,7 +18,7 @@ interface Props {
 export function RequestTable({ caption, rows, showOwner, onOpen, actionLabel, expandedId, onAction, renderExpanded }: Props) {
   return (
     <div className="table-wrap">
-      <table>
+      <table className="stack">
         <caption>{caption}</caption>
         <thead>
           <tr>
@@ -41,14 +41,14 @@ export function RequestTable({ caption, rows, showOwner, onOpen, actionLabel, ex
             <Fragment key={r.id}>
               <tr>
                 <th scope="row">{r.title || `Request ${r.id}`}</th>
-                <td>{r.requestType}</td>
-                <td>{r.dataSensitivity}</td>
-                <td>{r.effort}</td>
-                <td className="num">{r.sponsorRank ?? ''}</td>
-                <td>
+                <td data-label="Type">{r.requestType}</td>
+                <td data-label="Sensitivity">{r.dataSensitivity}</td>
+                <td data-label="Effort">{r.effort}</td>
+                <td data-label="Sponsor rank" className="num">{r.sponsorRank ?? ''}</td>
+                <td data-label="Status">
                   <span className="badge">{r.status || 'No status'}</span>
                 </td>
-                <td>{showOwner ? r.ownerEmail : formatDate(r.created)}</td>
+                <td data-label={showOwner ? 'Owner' : 'Created'}>{showOwner ? r.ownerEmail : formatDate(r.created)}</td>
                 <td className="row-actions">
                   <button type="button" onClick={() => onOpen(r.id)} aria-label={`Open details for ${r.title || `request ${r.id}`}`}>
                     Open
