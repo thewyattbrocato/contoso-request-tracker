@@ -318,17 +318,9 @@ Not done or not verified:
 
 - **Which agent.** The coding agent is Claude Code, Anthropic's coding agent. I have not recorded which model version it ran, so none is named here.
 - **What it did.** Claude Code wrote the React and TypeScript code, the CI configuration and this README under my direction, from a written specification that I supplied (screens, validation, sort order, the decision rule and the sample-address rule).
-- **What it did not do.** It did not write the data-access layer:  is produced by the Power Apps CLI. It did not decide the behaviour, and the build has no AI feature.
+- **What it did not do.** It did not write the data-access layer: `src/generated` is produced by the Power Apps CLI. It did not decide the behaviour, and the build has no AI feature.
 - **What I check by hand.** I read each change before it is merged, run the app through the Power Apps host against sample data, and look for personal or environment-specific values before every commit.
-- **Checks every change must pass.** 
-[41m                                                                               [0m
-[41m[37m                This is not the tsc command you are looking for                [0m
-[41m                                                                               [0m
-
-To get access to the TypeScript compiler, [34mtsc[0m, from the command line either:
-
-- Use [1mnpm install typescript[0m to first add TypeScript to your project [1mbefore[0m using npx
-- Use [1myarn[0m to avoid accidentally running code from un-installed packages (type check), , , and a scan for environment, tenant and personal identifiers. The first three run in the CI workflow in GitHub Actions on every push and pull request. From the change that added this paragraph onward, changes also go through the no-mistakes review pipeline (a local gate that runs review, tests, lint and CI before a pull request is ready); earlier commits in this repository did not.
+- **Checks every change must pass.** `npx tsc -b` (type check), `npm run lint`, `npm run build`, and a scan for environment, tenant and personal identifiers. The first three run in the CI workflow in GitHub Actions on every push and pull request. From the change that added this paragraph onward, changes also go through the no-mistakes review pipeline (a local gate that runs review, tests, lint and CI before a pull request is ready); earlier commits in this repository did not.
 
 ## What I would change with more context
 
