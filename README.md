@@ -4,6 +4,12 @@ A small request-intake app where **a person, not the software, decides** which r
 
 > A practice build I made in November 2026 in a Microsoft environment, with fictional Contoso data. It is not production, it was not shared, and it is not based on any Microsoft internal system.
 
+## Walkthrough
+
+A short clip: open the review queue, choose Decide, write a reason, confirm, and see the success message.
+
+![Walkthrough: Review queue, Decide, reason, confirm, success](docs/walkthrough.gif)
+
 ## The problem
 
 Many teams ask one small team for work, and there is never room for all of it. Someone has to rank the asks, see what is waiting, decide, and keep a record of why. This build is a small, honest version of that: submit a request, see the queue in a fixed order, record a human decision with a reason, and read the history.
