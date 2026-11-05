@@ -10,6 +10,8 @@ A short clip: open the review queue, choose Decide, write a reason, confirm, and
 
 ![Walkthrough: Review queue, Decide, reason, confirm, success](docs/walkthrough.gif)
 
+*The clip shows the same app, built in a practice environment.*
+
 ## The problem
 
 Many teams ask one small team for work, and there is never room for all of it. Someone has to rank the asks, see what is waiting, decide, and keep a record of why. This build is a small, honest version of that: submit a request, see the queue in a fixed order, record a human decision with a reason, and read the history.
