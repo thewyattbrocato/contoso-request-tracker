@@ -8,7 +8,7 @@
 
 import { DecisionLogService, RequestsService } from '../generated'
 import type { DecisionLogModel, RequestsModel } from '../generated'
-import { EFFORT_RANK, STATUS_PENDING_REVIEW, STATUS_SUBMITTED } from './types'
+import { EFFORT_RANK, STATUS_PENDING_REVIEW } from './types'
 import type { DecisionRow, Effort, RequestRow, RequestType, Sensitivity } from './types'
 
 const PAGE_SIZE = 100
@@ -148,7 +148,7 @@ export interface NewRequest {
   ownerEmail: string
 }
 
-/** Creates a request with Status and StatusText "Submitted". Throws DataError with a friendly message. */
+/** Creates a request with Status and StatusText "Pending review", so it lands in the review queue. Throws DataError with a friendly message. */
 export async function createRequest(input: NewRequest): Promise<RequestRow> {
   let result
   try {
@@ -161,8 +161,8 @@ export async function createRequest(input: NewRequest): Promise<RequestRow> {
       Effort: input.effort,
       EffortRank: EFFORT_RANK[input.effort],
       DataSensitivity: input.dataSensitivity,
-      Status: STATUS_SUBMITTED,
-      StatusText: STATUS_SUBMITTED,
+      Status: STATUS_PENDING_REVIEW,
+      StatusText: STATUS_PENDING_REVIEW,
       OwnerEmail: input.ownerEmail.toLowerCase(),
     })
   } catch (e) {

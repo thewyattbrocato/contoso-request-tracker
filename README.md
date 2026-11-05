@@ -21,8 +21,8 @@ Many teams ask one small team for work, and there is never room for all of it. S
 
 ## The decision rule
 
-1. A new request is saved with status **Submitted**.
-2. A small flow outside this repo moves it to **Pending review**.
+1. A new request is saved by the app with status **Pending review**, so it lands in the review queue straight away.
+2. No Power Automate flow is used in this demo. Nothing moves a request between statuses except a person.
 3. The review queue lists Pending review items by **sponsor rank** (1 is highest), then by **effort** (small first).
 4. A reviewer picks Approve or Reject, **must write a rationale**, and confirms.
 5. Only then does the app write: it updates the request, then adds a history row.
@@ -34,9 +34,7 @@ Nothing is decided by a rule or a model. The ranking only decides the order in w
 ```mermaid
 flowchart LR
   Req([Requester]) -->|Submit| App["Code app<br/>React + TypeScript"]
-  App -->|create item<br/>Status = Submitted| Requests[("Requests list")]
-  Requests -->|new item| Flow["Small flow<br/>sets Pending review"]
-  Flow -->|update StatusText| Requests
+  App -->|create item<br/>Status = Pending review| Requests[("Requests list")]
   Rev([Reviewer]) -->|Approve or Reject<br/>plus rationale| App
   App -->|1. update item<br/>Status, rationale| Requests
   App -->|2. add history row| Log[("DecisionLog list")]
@@ -108,7 +106,7 @@ Nothing below has been done for this repo. It is the plan I would follow.
 | Step | Plan | Check first |
 | --- | --- | --- |
 | Environments | Separate development, test and production environments | Which environments exist and who administers them |
-| Packaging | Put the app and the flow in a solution so they move together | Code apps join a solution only in an environment with Dataverse; they publish without one otherwise |
+| Packaging | Put the app (and any flow added later) in a solution so they move together | Code apps join a solution only in an environment with Dataverse; they publish without one otherwise |
 | Settings | Move the SharePoint site and list names out of the app into environment variables, and use connection references for the connection | Whether environment variables cover code app data sources |
 | Import | Import the solution into test and production as **managed**; deploy through pipelines where Dataverse is available | Pipelines need Dataverse and managed environments |
 | Solution checker | Run it on the solution before each import | Whether it covers code apps |
@@ -134,6 +132,7 @@ Reference: [Application lifecycle management for code apps](https://learn.micros
 ## What I would change with more context
 
 - Ask who the real decision-makers are and replace the demo Acting as selector with real identity and a role check.
+- Add Power Automate where it earns its place: notifications, escalation of requests that wait too long, and an approval step once the connector policy allows. No Power Automate flow is used in this demo.
 - Put the decision behind an approval step or a governed store, once policy allows it.
 - Move the two-step write server-side with an idempotency key, and add a status check so a request cannot be decided twice.
 - Add tests with a mocked data layer, then an end-to-end run against a test environment.

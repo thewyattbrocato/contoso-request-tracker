@@ -121,7 +121,7 @@ export function SubmitView({ email, onCreated, onViewMine }: Props) {
       <div aria-live="polite">
         {savedId !== null ? (
           <div className="banner banner-ok">
-            <p>Saved as request {savedId}. Its status is Submitted.</p>
+            <p>Saved as request {savedId}. Its status is Pending review, so it is now in the review queue.</p>
             <button type="button" onClick={onViewMine}>
               View my requests
             </button>

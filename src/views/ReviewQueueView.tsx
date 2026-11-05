@@ -30,7 +30,7 @@ export function ReviewQueueView({ refreshKey, decidedBy, onOpen, onDecided }: Pr
     <section aria-labelledby="queue-heading">
       <h2 id="queue-heading">Review queue</h2>
       <p className="note">
-        A small flow sets a new request to Pending review. A person then decides here or in Detail; nothing is automatic.
+        New requests wait here for a person to decide; nothing is automatic.
       </p>
       <p className="note">Sorted by sponsor rank, then by effort (small first).</p>
       <div aria-live="polite">
