@@ -1,6 +1,6 @@
 # Contoso Request Tracker
 
-> A practice build I made in November 2026 in a Power Platform developer environment inside my own work Microsoft 365 account (my employer's tenant, not Microsoft's), with fictional Contoso data. It is not production, it was not shared, it is not based on any Microsoft internal system, and it has no connection to or access to any Microsoft internal system.
+> A practice build I made in November 2026 in a Power Platform developer environment inside my own work Microsoft 365 account (my dev tenant, not Microsoft's), with fictional Contoso data. It is not production, it was not shared, it is not based on any Microsoft internal system, and it has no connection to or access to any Microsoft internal system.
 
 ## Start here
 
