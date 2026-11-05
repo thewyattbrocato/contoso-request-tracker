@@ -14,7 +14,7 @@
 
 **Look at it in 5 minutes**
 
-1. Read [the decision rule](#the-decision-rule) and [the architecture and data flow](#architecture-and-data-flow).
+1. Take [the tour](#take-a-tour). Read [the decision rule](#the-decision-rule) and [the architecture and data flow](#architecture-and-data-flow).
 2. Read [how the blocked approval connector was handled](#an-approval-connector-was-blocked-so-the-decision-lives-in-the-app) and [the plan from test to production](#from-test-to-production-planned-not-executed).
 3. Read [how AI was used in this build](#ai-in-this-build) and [how the app handles accessibility](#how-this-app-handles-accessibility).
 
@@ -50,6 +50,125 @@ A short clip of the main path. The same steps are listed in words below the clip
 6. Open **My requests** and a request's **Detail** page to see its decision history.
 
 [Still image of the decision panel](docs/walkthrough-still.png)
+
+## Take a tour
+
+Each stop has a picture or a clip, a plain description, and why it matters. Every clip also has its steps in words and a link to a still image. All data is fictional. The app title in the pictures reads "Request Tracker Practice": it is the same app, built in a practice environment.
+
+### 1. Submit a request
+
+<img src="docs/images/shot-01-submit-form.jpg" alt="The Submit tab with an empty form. At the top is an Acting as selector with a short note, then a Submit a request heading and the fields Title, Request type, Business outcome and Data sensitivity, with the line 'Pick a level to see who has to review it' under the sensitivity field." width="640">
+
+**What you are seeing.** The Submit tab with an empty form. Above it, an "Acting as" selector says in plain words that this is a demo convenience. The form asks for a title, a request type, the business outcome and a data sensitivity. Under the sensitivity field, a line explains that the choice decides who has to review the request.
+
+**Why it matters.** The form asks for what a reviewer needs to rank the request, and says up front how sensitivity changes who reviews it.
+
+### 2. The form says what is still missing
+
+<img src="docs/images/shot-02-submit-validation.jpg" alt="The Submit form with only a title typed in. At the bottom, a line reads 'Still needed: Request type, Business outcome, Data sensitivity, Effort, Sponsor rank.' and the Submit request button is shown disabled." width="640">
+
+**What you are seeing.** The same form with only a title filled in. A line at the bottom lists everything still needed, and the Submit request button is disabled.
+
+**Why it matters.** The problem is written as a sentence, not shown by colour, so a person can see what to fix before they try to save.
+
+<img src="docs/images/gif-01-submit-with-validation.gif" alt="Animated clip: the empty Submit form is filled in field by field. The 'Still needed' line gets shorter as fields are completed, the Submit request button becomes available, and after it is chosen a message says the request was saved with the status Pending review." width="640">
+
+Steps in the clip:
+
+1. Open the **Submit** tab with the form empty.
+2. Click the **Title** field and type a title.
+3. Choose a **Request type** and type the **Business outcome**.
+4. Choose a **Data sensitivity**. The line under it explains who reviews that level.
+5. Choose an **Effort**. The "Still needed" line now lists only the sponsor rank.
+6. Enter a **Sponsor rank**. The line disappears and the **Submit request** button is enabled.
+7. Choose **Submit request**. A message says the request was saved with the status Pending review, and the form is cleared.
+
+[Still image of the saved message](docs/images/shot-05-submit-success-message.jpg)
+
+### 3. The saved message
+
+<img src="docs/images/shot-05-submit-success-message.jpg" alt="The Submit tab after saving. A message box reads 'Saved as request 20. Its status is Pending review, so it is now in the review queue.' with a View my requests button, above an empty form." width="640">
+
+**What you are seeing.** The message after a request is saved. It names the request number and the status in words and offers a "View my requests" button.
+
+**Why it matters.** The person is told exactly what happened and what the request's status is.
+
+### 4. The review queue
+
+<img src="docs/images/shot-03-review-queue.jpg" alt="The Review queue tab. Notes read 'New requests wait here for a person to decide; nothing is automatic.' and 'Sorted by sponsor rank, then by effort (small first).' Below, '10 requests pending review' and a first request, Seller handoff summary draft, with its type, sensitivity, effort, sponsor rank 1, status Pending review, owner, and Open and Decide buttons." width="640">
+
+**What you are seeing.** The Review queue tab. It says that new requests wait for a person to decide, and that the list is sorted by sponsor rank and then by effort. Each request shows its details and has an Open button and a Decide button.
+
+**Why it matters.** The order is a rule anyone can read and question. The software only sorts; it never decides.
+
+### 5. A person decides, with a reason
+
+<img src="docs/images/shot-04-decide-panel.jpg" alt="The Reviewer decision panel, opened under a request. Its title reads 'Reviewer decision; nothing is automatic'. It shows an empty Rationale (required) field, the text 'Say why. Approve and Reject stay disabled until this is filled in.', and Approve and Reject buttons that are disabled." width="640">
+
+**What you are seeing.** The panel that opens under a request when you choose Decide. The rationale is empty, so Approve and Reject are disabled, and the text says why.
+
+**Why it matters.** The person who decides has to say why, and has to confirm. That reason is kept.
+
+<img src="docs/images/gif-02-approve-with-reason.gif" alt="Animated clip: Decide is chosen on a request, the decision panel opens, a reason is typed, Approve is chosen, a question asks to confirm, and a message says the request was marked Approved and its history entry was saved." width="640">
+
+Steps in the clip:
+
+1. In the **Review queue**, choose **Decide** on a request.
+2. The decision panel opens with the rationale empty.
+3. Type a reason in the **Rationale** field.
+4. Choose **Approve**.
+5. A question asks whether to mark the request as Approved with this rationale. Choose **Confirm approval**.
+6. A message says the request was marked Approved and its history entry was saved, and the queue is one request shorter.
+
+[Still image of the result](docs/images/shot-05b-decision-success-message.jpg)
+
+<img src="docs/images/gif-03-reject-with-reason.gif" alt="Animated clip: Decide is chosen on a request, a reason is typed, Reject is chosen, a question asks to confirm, and a message says the request was marked Rejected and its history entry was saved." width="640">
+
+Steps in the clip:
+
+1. In the **Review queue**, choose **Decide** on another request.
+2. Type a reason in the **Rationale** field.
+3. Choose **Reject**.
+4. Choose **Confirm rejection**.
+5. A message says the request was marked Rejected and its history entry was saved, and the queue is one request shorter.
+
+[Still image of a rejected request's history](docs/images/shot-06-detail-history.jpg)
+
+### 6. The result is clear
+
+<img src="docs/images/shot-05b-decision-success-message.jpg" alt="The Review queue after a decision. A message box reads 'Request 7 was marked Approved and its history entry was saved.' Below it, the count has dropped to '9 requests pending review' and the next request is listed." width="640">
+
+**What you are seeing.** The message after a decision. It names the request and the decision in words, and says the history entry was saved. The request has left the queue, so the count is one lower.
+
+**Why it matters.** A decision takes two writes (the request, then its history row). They are reported together, and if the second fails the app says so and offers a retry for it alone.
+
+### 7. The history of a request
+
+<img src="docs/images/shot-06-detail-history.jpg" alt="The Detail tab for a request named Launch readiness tracker. It lists the status Rejected, type, business outcome, sponsor, sponsor rank, effort, sensitivity, owner, created date and the decision rationale, followed by a Decision history table with columns Decided on, Decision, Decided by, Rationale and AI suggestion used." width="640">
+
+**What you are seeing.** The Detail tab. The request's fields come first, then a table of its decisions, newest first, with the date, the decision, who decided, the reason, and whether an AI suggestion was used (it says No).
+
+**Why it matters.** A decision can be questioned later because the reason and the date are kept next to the request.
+
+### 8. Acting as a sample requester
+
+<img src="docs/images/shot-07-my-requests-view-as.jpg" alt="The My requests tab with the Acting as selector set to a sample requester. The text reads 'Requests submitted by' that requester, then '2 requests for' that requester, with the first request listed." width="640">
+
+**What you are seeing.** The My requests tab, with the **Acting as** selector set to one of four fictional requesters. The list shows that requester's requests.
+
+**Why it matters.** It lets the demo show a full list without anyone's real address. It is a demo convenience, not a permission: access is decided by the SharePoint list permissions.
+
+<img src="docs/images/gif-04-acting-as.gif" alt="Animated clip: the My requests tab lists one sample requester's requests, the Acting as selector is changed to a second sample requester, the list changes, and opening a request shows its Detail page with its decision history." width="640">
+
+Steps in the clip:
+
+1. Open the **My requests** tab. It lists the first sample requester's requests.
+2. Open the **Acting as** selector and choose a second sample requester.
+3. The list changes to that requester's requests.
+4. Choose **Open** on a request.
+5. The **Detail** page shows the request and its decision history.
+
+[Still image of the selector](docs/images/shot-07-my-requests-view-as.jpg)
 
 ## The problem
 
