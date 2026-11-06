@@ -309,7 +309,7 @@ Not done or not verified:
 
 ## Known limits
 
-- **List size and delegation.** SharePoint list views slow down past 5,000 items, so the lists need indexes on StatusText, OwnerEmail and RequestID. The app uses only server-side filters and sorts, and reads all pages. A client-side re-sort of the pending subset backs up the two-key queue sort.
+- **List size and delegation.** SharePoint list views slow down past 5,000 items, so the lists need indexes on StatusText, OwnerEmail and RequestID. The app uses only server-side filters and sorts, and reads pages until the list ends, stopping silently at 2,000 rows (20 pages of 100). A client-side re-sort of the pending subset backs up the two-key queue sort.
 - **No concurrency guard.** If two reviewers open the same request, the last write wins.
 - **No automated behaviour tests.** CI proves the code type-checks, lints and bundles. Behaviour against the real lists is checked by hand in the Power Apps host.
 - **When to move to Dataverse.** When you need row-level security roles instead of per-item list permissions, relational integrity between requests and decisions, atomic multi-table writes, auditing, or standard solution-based deployment with environment variables.
